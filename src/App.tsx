@@ -370,6 +370,17 @@ function App() {
       <footer>
         <p>A new Pokémon every day at midnight • Gen I–III</p>
       </footer>
+
+      <div className="daily-cross-promo">
+        <span className="promo-label">More Dailies</span>
+        <div className="promo-links">
+          <a href="https://cinephile.codyp.xyz" target="_blank" rel="noopener">🎬 Cinéphile</a>
+          <a href="https://chromacle.vercel.app" target="_blank" rel="noopener">🎨 Chromacle</a>
+          <a href="https://geodle-six.vercel.app" target="_blank" rel="noopener">🌍 Geodle</a>
+          <a href="https://flaggle-chi.vercel.app" target="_blank" rel="noopener">🏁 Flaggle</a>
+          <a href="https://cosmole.vercel.app" target="_blank" rel="noopener">🪐 Cosmole</a>
+        </div>
+      </div>
     </div>
   )
 }
