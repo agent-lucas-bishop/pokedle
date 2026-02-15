@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --red: #DC0A2D;
+  --red-dark: #A00020;
+  --red-light: #FF4D6A;
+  --dark: #1A1A2E;
+  --darker: #0F0F1A;
+  --card: #252540;
+  --card-hover: #2E2E4A;
+  --text: #F0F0F0;
+  --text-dim: #8888AA;
+  --correct: #4CAF50;
+  --partial: #FFC107;
+  --wrong: #555577;
+  --type-normal: #A8A878;
+  --type-fire: #F08030;
+  --type-water: #6890F0;
+  --type-grass: #78C850;
+  --type-electric: #F8D030;
+  --type-ice: #98D8D8;
+  --type-fighting: #C03028;
+  --type-poison: #A040A0;
+  --type-ground: #E0C068;
+  --type-flying: #A890F0;
+  --type-psychic: #F85888;
+  --type-bug: #A8B820;
+  --type-rock: #B8A038;
+  --type-ghost: #705898;
+  --type-dragon: #7038F8;
+  --type-dark: #705848;
+  --type-steel: #B8B8D0;
+  --type-fairy: #EE99AC;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--darker);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(220,10,45,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(104,144,240,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(120,200,80,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

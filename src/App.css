@@ -1,0 +1,552 @@
+/* ===== POKÉDLE STYLES ===== */
+
+.app {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 24px 0 16px;
+  position: relative;
+}
+
+header h1 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2rem;
+  color: var(--red);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.5), 0 0 30px rgba(220,10,45,0.3);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.pokeball-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #333;
+  margin: 0 auto 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pokeball-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--red);
+  border-bottom: 3px solid #333;
+}
+
+.pokeball-line {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 3px;
+  background: #333;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.pokeball-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 3px solid #333;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.help-btn {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--text-dim);
+  background: transparent;
+  color: var(--text-dim);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.help-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Silhouette */
+.silhouette-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 8px 0 16px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.silhouette-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(220,10,45,0.08), transparent 70%);
+}
+
+.silhouette-img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: brightness(0) saturate(0);
+  transition: filter 0.8s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.silhouette-img.revealed {
+  filter: none;
+  animation: revealBounce 0.6s ease;
+}
+
+@keyframes revealBounce {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.who-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 12px;
+  letter-spacing: 1px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pokemon-name-reveal {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: var(--red-light);
+  margin-top: 8px;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.pokeball-loader {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--text-dim);
+  border-top-color: var(--red);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Input */
+.input-area {
+  margin: 0 0 20px;
+  position: relative;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1rem;
+  background: var(--card);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: var(--text);
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 20px rgba(220,10,45,0.15);
+}
+
+.input-wrapper input::placeholder {
+  color: var(--text-dim);
+}
+
+.input-spinner {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text-dim);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  margin-top: 4px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.suggestions button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+  text-align: left;
+}
+
+.suggestions button:hover {
+  background: var(--card-hover);
+}
+
+.suggestions button img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+.poke-id {
+  color: var(--text-dim);
+  margin-left: auto;
+  font-size: 0.8rem;
+}
+
+.guess-count {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+/* Guess Table */
+.guesses-table {
+  margin: 0 0 20px;
+  overflow-x: auto;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(6, 1fr);
+  gap: 4px;
+  padding: 8px 4px;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.table-header > div {
+  text-align: center;
+}
+
+.table-header > div:first-child {
+  text-align: left;
+  padding-left: 8px;
+}
+
+.guess-row {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(6, 1fr);
+  gap: 4px;
+  padding: 4px;
+  animation: slideIn 0.3s ease;
+}
+
+.guess-row.winner {
+  animation: slideIn 0.3s ease, winGlow 1s ease 0.3s;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes winGlow {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 20px rgba(76,175,80,0.3); }
+}
+
+.pokemon-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.pokemon-cell img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.pokemon-cell span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s;
+  position: relative;
+  min-height: 50px;
+}
+
+.result-cell.correct {
+  background: var(--correct);
+  color: white;
+}
+
+.result-cell.partial {
+  background: var(--partial);
+  color: #1A1A2E;
+}
+
+.result-cell.wrong {
+  background: var(--wrong);
+  color: var(--text-dim);
+}
+
+.cell-icon {
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.cell-value {
+  line-height: 1.2;
+}
+
+.cell-arrow {
+  font-size: 0.7rem;
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+/* Type Badge */
+.type-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Game Over */
+.game-over {
+  text-align: center;
+  padding: 24px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  margin: 8px 0;
+}
+
+.win-msg h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  color: var(--correct);
+  margin-bottom: 8px;
+}
+
+.lose-msg h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.8rem;
+  color: var(--red-light);
+  margin-bottom: 8px;
+}
+
+.game-over p {
+  color: var(--text-dim);
+  margin: 4px 0;
+}
+
+.share-btn {
+  margin: 16px auto 8px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+.share-btn:hover {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(220,10,45,0.4);
+}
+
+.next-hint {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 12px;
+}
+
+/* Help Modal */
+.help-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.help-content {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.help-content h2 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9rem;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.help-content p {
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.help-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.help-grid div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot.correct { background: var(--correct); }
+.dot.partial { background: var(--partial); }
+.dot.wrong { background: var(--wrong); }
+
+.help-hint {
+  font-size: 0.8rem !important;
+  color: var(--text-dim) !important;
+}
+
+.help-content button {
+  width: 100%;
+  padding: 12px;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  header h1 { font-size: 1.4rem; }
+  .table-header { font-size: 0.6rem; }
+  .result-cell { font-size: 0.65rem; padding: 4px 2px; }
+  .pokemon-cell span { font-size: 0.75rem; }
+  .pokemon-cell img { width: 28px; height: 28px; }
+  .guess-row { grid-template-columns: 1.2fr repeat(6, 1fr); }
+}
