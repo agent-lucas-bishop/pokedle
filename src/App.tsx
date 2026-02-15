@@ -197,13 +197,16 @@ function App() {
   const compareResults = useCallback((guess: Pokemon, target: Pokemon): Guess['results'] => {
     const type1Match = guess.types[0] === target.types[0] ? 'correct' as const
       : target.types.includes(guess.types[0]) ? 'partial' as const : 'wrong' as const
-    const type2Match = (guess.types[1] && target.types[1] && guess.types[1] === target.types[1]) ? 'correct' as const
-      : (guess.types[1] && target.types.includes(guess.types[1])) ? 'partial' as const : 'wrong' as const
+    const type2Match: 'correct' | 'partial' | 'wrong' = 
+      (!guess.types[1] && !target.types[1]) ? 'correct'
+      : (guess.types[1] && target.types[1] && guess.types[1] === target.types[1]) ? 'correct'
+      : (guess.types[1] && target.types.includes(guess.types[1])) ? 'partial'
+      : 'wrong'
 
     return {
       name: guess.name === target.name,
       type1: type1Match,
-      type2: type2Match || 'wrong',
+      type2: type2Match,
       generation: guess.generation === target.generation ? 'correct' : guess.generation > target.generation ? 'lower' : 'higher',
       height: guess.height === target.height ? 'correct' : guess.height > target.height ? 'lower' : 'higher',
       weight: guess.weight === target.weight ? 'correct' : guess.weight > target.weight ? 'lower' : 'higher',
